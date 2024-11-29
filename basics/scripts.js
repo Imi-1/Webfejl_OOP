@@ -60,7 +60,7 @@ console.log(gomszab.getTierLevel())
 
 class Person{
     constructor(name){
-        this.name="Géza";
+        this.name=name;
     }
 
     getName(){
@@ -69,9 +69,9 @@ class Person{
 }
 
 class Student{
-    constructor(school){
+    constructor(school,name){
         this.school=school;
-        Person.call(this);
+        Person.call(this,name);
     }
 }
 
