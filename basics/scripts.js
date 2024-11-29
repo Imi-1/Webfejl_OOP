@@ -58,4 +58,25 @@ gomszab.play()
 console.log(gomszab.getTierLevel())
 
 
+class Person{
+    constructor(name){
+        this.name="Géza";
+    }
 
+    getName(){
+        return this.name;
+    }
+}
+
+class Student{
+    constructor(school){
+        this.school=school;
+        Person.call(this);
+    }
+}
+
+const geza=new Person("Géza");
+
+Object.setPrototypeOf(Student.prototype, Person.prototype);
+
+console.log(geza.getName());
