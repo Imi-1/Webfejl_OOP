@@ -79,29 +79,67 @@ const geza=new Student("Bólyai","Géza");
 console.log(geza.getName());
 
 
+// class Animal{
+//     constructor(hangja,csinalja){
+//         this.hangja=hangja;
+//         this.csinalja=csinalja;
+//     }
+
+//     kiir() {
+//         console.log(`A/Az ${this.nev} azt mondja, hogy ${this.hangja} és ${this.csinalja}.`);
+//     }
+// }
+
+// class Bird extends Animal{
+//     constructor(nev) {
+//         super("csirip","repül")
+//         this.nev=nev;
+//     }
+// }
+
+
+// class Mammal extends Animal{
+//     constructor(nev) {
+//         super("woof","jár")
+//         this.nev=nev;
+//     }
+// }
+
+
+// const kismadar=new Bird("cigánycsuk");
+// const nagykutya=new Mammal("bulldog");
+
+// kismadar.kiir();
+// nagykutya.kiir();
+
 class Animal{
-    constructor(hangja,csinalja){
-        this.hangja=hangja;
-        this.csinalja=csinalja;
+    constructor(nev){
+        this.nev=nev;
     }
 
-    kiir() {
-        console.log(`A/Az ${this.nev} azt mondja, hogy ${this.hangja} és ${this.csinalja}.`);
+    hang() {
+        console.log(`A/Az${this.nev} tud hangot kiadni.`);
     }
 }
 
 class Bird extends Animal{
     constructor(nev) {
-        super("csirip","repül")
-        this.nev=nev;
+       super(nev);
+    }
+
+    csinal(){
+        console.log(`A/Az${this.nev} tud repülni.`);
     }
 }
 
 
 class Mammal extends Animal{
     constructor(nev) {
-        super("woof","jár")
-        this.nev=nev;
+        super(nev);
+    }
+
+    csinal(){
+        console.log(`A/Az${this.nev} tud járni.`);
     }
 }
 
@@ -109,5 +147,9 @@ class Mammal extends Animal{
 const kismadar=new Bird("cigánycsuk");
 const nagykutya=new Mammal("bulldog");
 
-kismadar.kiir();
-nagykutya.kiir();
+
+kismadar.hang();
+kismadar.csinal();
+
+nagykutya.hang();
+nagykutya.csinal();
