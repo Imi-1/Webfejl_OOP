@@ -112,44 +112,44 @@ console.log(geza.getName());
 // kismadar.kiir();
 // nagykutya.kiir();
 
-class Animal{
-    constructor(nev){
+class Animal{ // Alap osztály Animal, amely általános tulajdonságokat tartalmaz az állatokhoz
+    constructor(nev){ // Konstruktor az állat nevének inicializálásához
         this.nev=nev;
     }
 
-    hang() {
+    hang() {// Hangképzési metódus az állatokhoz
         console.log(`A/Az${this.nev} tud hangot kiadni.`);
     }
 }
 
-class Bird extends Animal{
-    constructor(nev) {
+class Bird extends Animal{// A Bird osztály az Animal osztályból származik
+    constructor(nev) {// Konstruktor, amely meghívja a szülőosztály konstruktorát
        super(nev);
     }
 
-    csinal(){
+    repul(){//Metódus a madarak repülésére
         console.log(`A/Az${this.nev} tud repülni.`);
     }
 }
 
 
-class Mammal extends Animal{
-    constructor(nev) {
+class Mammal extends Animal{// A Mammal osztály az Animal osztályból származik
+    constructor(nev) {// Konstruktor, amely meghívja a szülőosztály konstruktorát
         super(nev);
     }
 
-    csinal(){
+    jar(){//metódus az emlősök járására
         console.log(`A/Az${this.nev} tud járni.`);
     }
 }
 
 
-const kismadar=new Bird("cigánycsuk");
-const nagykutya=new Mammal("bulldog");
+const kismadar=new Bird("cigánycsuk"); //Bird példány létrehozására
+const nagykutya=new Mammal("bulldog"); //Mammal példány létrehozására
 
 
 kismadar.hang();
-kismadar.csinal();
+kismadar.jar();
 
 nagykutya.hang();
-nagykutya.csinal();
+nagykutya.repul();
