@@ -6,7 +6,13 @@ class Factory{
 
     addMano(mano){
         this.manoList.push(mano); //fontos ide is a this
+        createRow(mano);
     }
+
+    createId(){
+        return thism.manoList.length //a hossza lesz az index ami az id lesz
+    }
+    
    }
    
    class Companion{
@@ -17,12 +23,13 @@ class Factory{
         this.keresztnev = keresztnev;
         this.vezeteknev = vezeteknev;
         this.reszleg = reszleg;
-        this.productList={};
+        this.productList=[];
 
     }
 
     getName(){//nem kell parameter, mert latja a parametereket
-        return this.keresztnev+" "+this.vezeteknev;
+       // return this.keresztnev+" "+this.vezeteknev;
+       return this.vezeteknev+" "+this.keresztnev;
     }
 
     addProducts(product){

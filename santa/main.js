@@ -38,6 +38,7 @@ document.getElementById('product').addEventListener('submit',function(e){
    e.preventDefault();
    const form = e.currentTarget;
    addProductForm(form, factory)
+   
 });
 
 /**
@@ -50,11 +51,14 @@ function initTable(){
       const currentElement= companionList[i]; //belerakom a lista aktualis elemet
       const companion =new Companion(i, currentElement.firstName, currentElement.lastName, currentElement.area) //companionba blerakom a konstruktor cuccait, a konstruktort azt meghivtuk mert mar kesz volt
 
-      for(const j of currentElement.products){//a foron belul vegigmegyek a products tombokon is
-         companion.addProducts(j);//a compainon peldanynak meghivjuk az addproducts fuggvenyet es beletesszuk az aktualis produktumot
-      }
+         for(const j of currentElement.products){//a foron belul vegigmegyek a products tombokon is
+            companion.addProducts(j);//a compainon peldanynak meghivjuk az addproducts fuggvenyet es beletesszuk az aktualis produktumot
+         }
+
       factory.addMano(companion);
-      console.log;
+      }
+
+      console.log(companion);
 }  
 
 
