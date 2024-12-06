@@ -44,8 +44,12 @@ document.getElementById('product').addEventListener('submit',function(e){
 * table render
 */
 function initTable(){
-
    // TODO 6
+
+   for(let i=0; i < companionList.length; i++){
+      const currentElement= companionList[i]; //belerakom a lista aktualis elemet
+      const companion =new Companion(i, currentElement.firstName, currentElement.lastName, currentElement.area) //companionba blerakom a konstruktor cuccait, a konstruktort azt meghivtuk mert mar kesz volt
+
 }
 
 
