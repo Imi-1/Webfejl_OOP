@@ -10,9 +10,13 @@ class Factory{
     }
 
     createId(){
-        return thism.manoList.length //a hossza lesz az index ami az id lesz
+        return this.manoList.length //a hossza lesz az index ami az id lesz
     }
-    
+    manoProducts(id){
+        id=this.mano.id;
+
+        createId()
+    }
    }
    
    class Companion{
