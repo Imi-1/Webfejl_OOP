@@ -12,15 +12,23 @@ class Factory{
     createId(){
         return this.manoList.length //a hossza lesz az index ami az id lesz
     }
-    manoProducts(product,id){
+    manoProducts(id){
         for(let i = 0; i < this.manoList.length; i++){
             if(this.manoList[i].id == id){
-                this.manoList[i].addProducts(product);
-                this.manoProducts(this.manoList[i].id);
+                refreshProductList(this.manoList[i])
             }
         }
     }
-   }
+
+    addProductToMano(product, id){
+        for(let i = 0; i < this.manoList.length; i++){
+            if(this.manoList[i].id == id){
+                this.manoList[i].addProducts(product)
+                this.manoProducts(this.manoList[i].id)
+            }
+        }
+    }
+}
    
    class Companion{
     // TODO 5

@@ -72,7 +72,7 @@ function refreshProductList(companion){ //TODO
     const productTableBody = productTable.querySelector('tbody')
     productTableBody.innerHTML = '';
 
-    for(let i = 0; i <companion.products.length; i ++)
+    for(let i = 0; i <companion.productList.length; i ++)
         {
             const product = companion.products[i];
             const sor = document.createElement('tr');
@@ -118,6 +118,6 @@ function addProductForm(form, factory){ // TODO
     const companionId = selector.value;
     const product = productName.value;
     // 12
-    factory.manoProducts(product, companionId);
+    factory.addProductToMano(product, companionId);
     console.log(factory);
 }
