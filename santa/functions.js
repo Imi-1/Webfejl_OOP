@@ -42,12 +42,14 @@ function createCell(parentElement){
  * Append a new companion to the selector
  * 
  */
-function appendToSelector(){
+function appendToSelector(mano){
     const productForm = document.getElementById('product')
     const selector = productForm.querySelector('#companionlist');
 
     const option = document.createElement('option');
     // TODO 11.
+    option.text = mano.getName();
+    option.value = mano.id;
 
     selector.appendChild(option);
 }
@@ -63,11 +65,22 @@ function refreshProductList(companion){ //TODO
 
     const companionName = document.getElementById('companion_name');
     // TODO 10
+    companionName.innerHTML = companion.getName();
     companionName.style.display = 'block';
     const productTable = document.getElementById('products');
     productTable.style.display = 'table';
     const productTableBody = productTable.querySelector('tbody')
     productTableBody.innerHTML = '';
+
+    for(let i = 0; i <companion.products.length; i ++)
+        {
+            const product = companion.products[i];
+            const sor = document.createElement('tr');
+            const td = document.createElement('td');
+            td.innerHTML = product;
+            sor.appendChild(td);
+            productTableBody.appendChild(sor);
+        }
     // TODO 10
 }
 
@@ -105,4 +118,6 @@ function addProductForm(form, factory){ // TODO
     const companionId = selector.value;
     const product = productName.value;
     // 12
+    factory.addProductToMano(product, companionId);
+    console.log(factory);
 }
