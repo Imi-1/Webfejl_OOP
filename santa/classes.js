@@ -13,10 +13,10 @@ class Factory{
         return this.manoList.length //a hossza lesz az index ami az id lesz
     }
     manoProducts(product,id){
-        for(let i = 0; i < this.manolist.length; i++){
-            if(this.manolist[i].id == id){
-                this.manolist[i].addProduct(product);
-                this.showProducts(this.manolist[i].id);
+        for(let i = 0; i < this.manoList.length; i++){
+            if(this.manoList[i].id == id){
+                this.manoList[i].addProducts(product);
+                this.manoProducts(this.manoList[i].id);
             }
         }
     }

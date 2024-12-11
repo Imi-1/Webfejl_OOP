@@ -118,6 +118,6 @@ function addProductForm(form, factory){ // TODO
     const companionId = selector.value;
     const product = productName.value;
     // 12
-    factory.addProductToMano(product, companionId);
+    factory.manoProducts(product, companionId);
     console.log(factory);
 }
