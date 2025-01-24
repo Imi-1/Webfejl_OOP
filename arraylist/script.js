@@ -19,10 +19,10 @@ class ArrayList{
         const index = this.#length; //hossz eltarolasa
         this.#state[index]=item;//a belso objektum tulajdonsaganak megadjuk a bemeneti erteket
         Object.defineProperty(this, index,{
-            get: function(){
+            get: ()=>{
                 return this.#state[index]
             },
-            set: function(value){
+            set: (value)=>{
                 this.#state[index]=value
             },
             configurable:true,
@@ -70,6 +70,49 @@ console.log(list.Contains(nev2)); // true
 console.log(list.Contains(szam1)); // true
 console.log(list.Contains(szam2)); // false
 
+class ArrayHtmlElement extends HTMLElement{
+    #tbody
+
+    constructor(){
+        super()
+    }
+
+    connectedCallback(){
+        const table = document.createElement("table")
+        this.appendChild(table)
+
+        this.#tbody = document.createElement("tbody")
+        table.appendChild(this.#tbody)
+
+        const thead = document.createElement("thead")
+        table.appendChild(thead)
+
+    }
+
+    /**
+     * 
+     * @param {{nev:string, eletkor:number}} param 
+     */
+    addpersonRow(param){
+        const tr = document.createElement("tr")
+        this.#tbody.appendChild(tr)
+
+        const td1 = document.createElement("td")
+        td1.innerHTML=param.nev
+        tr.appendChild(td1)
+
+        const td2 = document.createElement("td")
+        td2.innerHTML=param.eletkor
+        tr.appendChild(td2)
+    }
+}
+
+customElements.define("array-table", ArrayHtmlElement)
+const arraytable = new ArrayHtmlElement();
+document.body.appendChild(arraytable)
+
+
+arraytable.addpersonRow({nev:"cirmi",eletkor:5})
 
 // const kakas = {};
 // Object.defineProperty(kakas, "nev",{
