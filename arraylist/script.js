@@ -5,14 +5,16 @@ class ArrayList{
      */
     #length
     #state
+    #htmlArray
 
     get Count(){
         return this.#length
     }
 
-    constructor(){
+    constructor(array=undefined){
         this.#length=0;
-        this.#state={}
+        this.#state={};
+        this.#htmlArray = array;
     }
 
     Add(item){
@@ -29,6 +31,9 @@ class ArrayList{
             enumerable:true
         } )// az aktualis indexxel el akarjuk erni a hozzaadott elemet a peldanyon keresztul
 
+        if(this.#htmlArray) {
+            this.#htmlArray.addPersonRow(item)
+        }
         this.#length++
     }
 
@@ -93,7 +98,7 @@ class ArrayHtmlElement extends HTMLElement{
      * 
      * @param {{nev:string, eletkor:number}} param 
      */
-    addpersonRow(param){
+    addPersonRow(param){
         const tr = document.createElement("tr")
         this.#tbody.appendChild(tr)
 
@@ -112,7 +117,28 @@ const arraytable = new ArrayHtmlElement();
 document.body.appendChild(arraytable)
 
 
-arraytable.addpersonRow({nev:"cirmi",eletkor:5})
+const a = new ArrayList()
+a.Add({nev:"Laci", kor: 18})
+a.Add({nev:"Sanyi", kor: 21})
+a.Clear()
+console.log(a)
+
+
+const b = new ArrayList(arraytable)
+b.Add({nev:"Laci", eletkor: 18})
+b.Add({nev:"Sanyi", eletkor: 21})
+
+
+const button = document.createElement('button')
+button.innerHTML = "Hozzaad"
+document.body.appendChild(button)
+
+button.addEventListener('click', (e) =>{
+    b.Add({nev:"Yapaki", eletkor:22})
+})
+
+
+arraytable.addPersonRow({nev:"cirmi",eletkor:5})
 
 // const kakas = {};
 // Object.defineProperty(kakas, "nev",{
