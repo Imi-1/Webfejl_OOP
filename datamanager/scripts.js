@@ -78,6 +78,7 @@ class Datamanager{
 
 
 class Datatable{
+    #tbody
     /**
      * @param {Datamanager} dataManager
      */
@@ -85,37 +86,47 @@ class Datatable{
         const table = document.createElement("table")
         document.body.appendChild(table)
 
-        const tbody = document.createElement("tbody")
-        table.appendChild(tbody)
+        this.#tbody = document.createElement("tbody")
+        table.appendChild(this.#tbody)
 
         dataManager.setUpdateCallback((person) => {
-
-            tbody.innerHTML=""
-
-            for(const pers of person){
-                const tr= document.createElement("tr")
-                tbody.appendChild(tr)
-
-                const td1= document.createElement("td")
-                td1.innerHTML=pers.nev
-                tr.appendChild(td1)
-
-                const td2= document.createElement("td")
-                td2.innerHTML=pers.eletkor
-                tr.appendChild(td2)
-
-            }
+            this.#renderTable(person);
         })
+    }
 
+    #renderTable(person){
+        this.#tbody.innerHTML = '';
+        for (const pers of person){
+            const tr = document.createElement('tr');
+            this.#tbody.appendChild(tr);
+            
+            const td1 = document.createElement("td");
+            td1.innerHTML = pers.nev;
+            tr.appendChild(td1);
+            const td2 = document.createElement("td");
+            td2.innerHTML = pers.eletkor;
+            tr.appendChild(td2);
+        }
     }
 }
+
+
+
+
 const dataManager = new Datamanager([{eletkor:4,nev:"saci"},{eletkor:5,nev:"saci cica"},{eletkor:6,nev:"dagadt saci cica"}])
 const dataTable = new Datatable(dataManager)
 
-const input = document.createElement("input");
-document.body.appendChild(input);
+const input1 = document.createElement("input");
+document.body.appendChild(input1);
 
-input.addEventListener("input",(e)=>{
+const input2 = document.createElement("input");
+document.body.appendChild(input2);
 
-    e.currentTarget.value=filterAge(),filterName()
-})
+input1.addEventListener('input', (e) =>{
+    dataManager.filterName(input1.value);
+});
+
+input2.addEventListener('input', (e) =>{
+    const age_input = Number(input2.value);
+    dataManager.filterAge(age_input);
+});
