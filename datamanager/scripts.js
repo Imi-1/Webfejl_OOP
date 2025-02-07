@@ -42,23 +42,10 @@ class Datamanager{
      */
     add(item){
         this.#array.push(item)
+        this.#updateCallback(this.#array)
     }
 
 
-    /**
-     * 
-     * @param {number} age 
-     */
-    filterAge(age){
-        const result =[]
-        for(const elem of this.#array){
-            if(elem.eletkor===age){
-                result.push(elem)
-            }
-        }
-        this.#updateCallback(result)
-
-    }
 
     /**
      * 
@@ -72,6 +59,51 @@ class Datamanager{
             }
         }
         this.#updateCallback(result)
+    }
+
+    filterAge(age){
+        const age_result = [];
+        for(const elem of this.#array){
+            if(elem.eletkor === age){
+                age_result.push(elem);
+            }
+        }
+        this.#updateCallback(age_result);
+    }
+
+    /**
+     * 
+     * @param {function(Person):boolean}callback
+     */
+    filter(callback){
+        const result =[]
+        for(const elem of this.#array){
+            if(callback(elem)){
+                result.push(elem)
+            }
+        }
+        this.#updateCallback(result)
+    }   
+
+
+    orderByAge(){
+        for(const i of this.#array){
+            result.push(i)
+        }
+        for(let i=0;i< result.lenght-1;i++){
+            for(let j=i+1;j< result.lenght;i++){
+                if(result[i] < result[j]){
+                    const tmp = result[j]
+                    result[i]=result[j]
+                    result[j]=tmp
+                }
+            }
+        }
+        this.#updateCallback(result)
+    }
+
+    orderByName(){
+        
     }
 
 }
@@ -128,5 +160,39 @@ input1.addEventListener('input', (e) =>{
 
 input2.addEventListener('input', (e) =>{
     const age_input = Number(input2.value);
-    dataManager.filterAge(age_input);
+    dataManager.filter((pers) =>{
+        return pers.eletkor===age_input
+    })
+});
+
+
+
+
+const input3=document.createElement("input")
+input3.type="file";
+document.body.appendChild(input3)
+
+input3.addEventListener('change', (e) =>{
+    const file = e.target.files[0]
+    
+    const reader = new FileReader()
+    reader.readAsText(file)
+
+    reader.onload = (e) =>{
+        const fileContent= reader.result
+        console.log(fileContent)
+
+        const splitting =fileContent.split("\n")
+
+        for(const i of splitting){
+            const data = i.split(";")
+            const pers = {
+                nev: data[0],
+                eletkor: Number(data[1])
+            }
+            dataManager.add(pers)
+        }
+
+    }
+
 });
