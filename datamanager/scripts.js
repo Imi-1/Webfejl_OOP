@@ -86,26 +86,22 @@ class Datamanager{
     }   
 
 
-    orderByAge(){
+    orderBy(compareCallback) {
+        const result = []
         for(const i of this.#array){
-            result.push(i)
+            result.push(i);
         }
-        for(let i=0;i< result.lenght-1;i++){
-            for(let j=i+1;j< result.lenght;i++){
-                if(result[i] < result[j]){
-                    const tmp = result[j]
-                    result[i]=result[j]
-                    result[j]=tmp
+        for(let i = 0; i < result.length - 1; i++){
+            for(let j = i + 1; j < result.length; j++){
+                if(compareCallback(result[i], result[j]) > 0){
+                    const tmp = result[i];
+                    result[i] = result[j];
+                    result[j] = tmp;
                 }
             }
         }
-        this.#updateCallback(result)
-    }
-
-    orderByName(){
-        
-    }
-
+        this.#updateCallback(result);
+}
 }
 
 
@@ -118,12 +114,32 @@ class Datatable{
         const table = document.createElement("table")
         document.body.appendChild(table)
 
+        const thead = document.createElement('thead');
+        table.appendChild(thead);
+
+        const headerRow = document.createElement('tr');
+        thead.appendChild(headerRow);
+        
+        const thName = document.createElement('th');
+        thName.innerHTML = 'Név';
+        headerRow.appendChild(thName);
+
+        dataManager.orderBy((a, b) => a.nev.localeCompare(b.nev));
+
+        const thAge = document.createElement('th');
+        thAge.innerHTML = 'Életkor';
+        headerRow.appendChild(thAge);
+
+        dataManager.orderBy((a, b) => b.eletkor - a.eletkor);
+
+
         this.#tbody = document.createElement("tbody")
         table.appendChild(this.#tbody)
 
         dataManager.setUpdateCallback((person) => {
             this.#renderTable(person);
         })
+
     }
 
     #renderTable(person){
